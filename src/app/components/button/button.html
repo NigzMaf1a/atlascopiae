@@ -1,0 +1,11 @@
+<button [class]="styles()" [type]="type()" [disabled]="disabled() || loading()" [attr.aria-label]="aria_label() || null"
+    [attr.aria-busy]="loading()" (click)="handleClick($event)">
+    @if (loading()) {
+    <span class="h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent"
+        aria-hidden="true"></span>
+
+    <span>Loading...</span>
+    } @else {
+    <ng-content></ng-content>
+    }
+</button>
