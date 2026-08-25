@@ -1,1 +1,3 @@
-<p>form works!</p>
+<form [class]="styles()" novalidate (submit)="submit($event)">
+    <ng-content></ng-content>
+</form>
