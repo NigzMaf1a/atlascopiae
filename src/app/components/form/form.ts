@@ -34,10 +34,13 @@ export class Form {
 
   styles(): string {
     return `
-      w-full
-      flex
-      flex-col
+      w-full border
+      flex border-neutral-300
+      flex-col rounded-lg
       gap-4
+      bg-white
+      px-2
+      py-2
     `
   }
 }
