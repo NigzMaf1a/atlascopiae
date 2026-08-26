@@ -91,6 +91,6 @@ const endpoints = {
         patchWorth: (id: number) =>
             `/api/v1/store-worth-daily/${id}/worth`
     }
-}
+} as const
 
 export default endpoints
