@@ -1,11 +1,11 @@
-interface Links {
+export interface Links {
     auth: string
     copiae: string
 }
 
 const links: Links = {
-    auth: 'localhost:8080',
-    copiae: 'localhost:8083'
+    auth: 'http://localhost:8080',
+    copiae: 'http://localhost:8083'
 } as const
 
 export default links
