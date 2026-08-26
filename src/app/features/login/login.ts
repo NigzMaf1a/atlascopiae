@@ -1,4 +1,4 @@
-import { Component } from '@angular/core'
+import { Component, inject } from '@angular/core'
 import {
   FormControl,
   FormGroup,
@@ -6,12 +6,17 @@ import {
   Validators
 } from '@angular/forms'
 
+import { ToastrService } from 'ngx-toastr'
+
 import { Page } from '../../components/page/page'
 import { Form } from '../../components/form/form'
 import { Input } from '../../components/input/input'
 import { Button } from '../../components/button/button'
 import { Text } from '../../components/text/text'
 import { Topstrip } from '../../components/topstrip/topstrip'
+
+import { AuthService } from '../../service/auth.service'
+import Session from '../../scripts/auth/session'
 
 @Component({
   selector: 'app-login',
@@ -28,6 +33,9 @@ import { Topstrip } from '../../components/topstrip/topstrip'
   styleUrl: './login.css'
 })
 export class Login {
+
+  private authService = inject(AuthService)
+  private toastr = inject(ToastrService)
 
   form = new FormGroup({
     email: new FormControl('', {
@@ -50,6 +58,7 @@ export class Login {
   submitting = false
 
   submit(): void {
+
     if (this.form.invalid) {
       this.form.markAllAsTouched()
       return
@@ -59,8 +68,31 @@ export class Login {
 
     const credentials = this.form.getRawValue()
 
-    console.log(credentials)
+    this.authService.login(credentials).subscribe({
+      next: (response) => {
+        console.log('Login successful:', response)
 
-    // Authentication request goes here.
+        this.submitting = false
+
+        Session.storeToken(response.token)
+        Session.storeUser(response.user)
+
+        this.toastr.success(
+          'You have been logged in successfully.',
+          'Login successful'
+        )
+      },
+
+      error: (error) => {
+        console.error('Login failed:', error)
+
+        this.submitting = false
+
+        this.toastr.error(
+          'Invalid email or password.',
+          'Login failed'
+        )
+      }
+    })
   }
 }
