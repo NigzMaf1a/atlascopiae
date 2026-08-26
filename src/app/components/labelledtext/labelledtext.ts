@@ -2,7 +2,7 @@ import { Component, input } from '@angular/core'
 import { Text } from '../text/text'
 
 type Size = 'xs' | 'sm' | 'lg' | 'xl' | '2xl'
-type Color = 'green' | 'red' | 'yellow' | 'black'
+type Color = 'green' | 'red' | 'yellow' | 'black' | 'blue' | 'slate'
 
 @Component({
   selector: 'app-labelledtext',
@@ -15,7 +15,7 @@ export class Labelledtext {
   value = input.required<string | number>()
 
   label_size = input<Size>('sm')
-  label_color = input<Color>('black')
+  label_color = input<Color>('slate')
 
   value_size = input<Size>('sm')
   value_color = input<Color>('black')

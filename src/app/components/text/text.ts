@@ -1,7 +1,8 @@
 import { Component, input } from '@angular/core'
 
 type Size = 'xs' | 'sm' | 'lg' | 'xl' | '2xl'
-type Color = 'green' | 'red' | 'yellow' | 'black'
+type Color = 'green' | 'red' | 'yellow' | 'black' | 'blue' | 'slate'
+type Position = 'left' | 'center' | 'right'
 
 @Component({
   selector: 'app-text',
@@ -13,6 +14,7 @@ export class Text {
   text = input.required<string | number>()
   text_size = input<Size>('sm')
   text_color = input<Color>('black')
+  text_position = input<Position>('left')
 
   styles(): string {
     const s = this.text_size() === 'xs'
@@ -31,7 +33,10 @@ export class Text {
         ? 'text-red-500'
         : this.text_color() === 'yellow'
           ? 'text-yellow-500'
-          : 'text-black'
+          : this.text_color() === 'blue' ? 'text-blue-500'
+            : this.text_color() === 'slate' ? 'text-slate-500' : 'text-black'
+
+    const p = this.text_position() === 'center' ? 'text-center' : this.text_position() === 'right' ? 'text-right' : 'text-left'
 
     const extras = `
     font-sans
@@ -41,6 +46,6 @@ export class Text {
     antialiased
   `
 
-    return `${s} ${c} ${extras}`
+    return `${s} ${c} ${p} ${extras}`
   }
 }
