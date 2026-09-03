@@ -1,1 +1,9 @@
-<p>tray works!</p>
+<div [class]="styles().cont">
+    @if(data.length > 0){
+    <ng-content></ng-content>
+    } @else{
+    <p [class]="styles().text">
+        {{no_data_message}}
+    </p>
+    }
+</div>
