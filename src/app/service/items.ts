@@ -8,6 +8,7 @@ import endpoints from '../scripts/apis/endpoints'
 import {
   ItemResponse,
   CreateItemRequest,
+  UpdateItemRequest,
   UpdateItemDescriptionRequest,
   UpdateItemNameRequest,
   UpdateItemValueRequest
@@ -25,5 +26,21 @@ export class Items {
 
   readItems() {
     return this.http.get<ItemResponse[]>(endpoints.items.get)
+  }
+
+  updateItem(id: number, item: UpdateItemRequest) {
+    return this.http.put(endpoints.items.put(id), item)
+  }
+
+  patchItemValue(id: number, val: UpdateItemValueRequest) {
+    return this.http.patch(endpoints.items.patchValue(id), val)
+  }
+
+  patchItemName(id: number, val: UpdateItemNameRequest) {
+    return this.http.patch(endpoints.items.patchName(id), val)
+  }
+
+  patchItemDescription(id: number, val: UpdateItemDescriptionRequest) {
+    return this.http.patch(endpoints.items.patchDesc(id), val)
   }
 }
