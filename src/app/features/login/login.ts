@@ -15,7 +15,7 @@ import { Button } from '../../components/button/button'
 import { Text } from '../../components/text/text'
 import { Topstrip } from '../../components/topstrip/topstrip'
 
-import { AuthService } from '../../service/auth.service'
+import { AuthService } from '../../service/features/auth/auth.service'
 import Session from '../../scripts/auth/session'
 
 @Component({
