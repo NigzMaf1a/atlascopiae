@@ -1,9 +1,9 @@
 <div [class]="styles().cont">
-    @if(data.length > 0){
-    <ng-content></ng-content>
-    } @else{
+    @if (data().length > 0) {
+    <ng-content />
+    } @else {
     <p [class]="styles().text">
-        {{no_data_message}}
+        {{ no_data_message() }}
     </p>
     }
 </div>
