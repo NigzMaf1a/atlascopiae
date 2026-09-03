@@ -22,7 +22,6 @@ export const routes: Routes = [
     },
     {
         path: 'storeditems',
-        component: Storeditems,
-        canActivate: [authGuard]
+        component: Storeditems
     }
 ]

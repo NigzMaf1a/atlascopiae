@@ -14,7 +14,7 @@ export class Page {
       w-full
       min-h-screen
       bg-slate-900
-      p-8
+      px-1
       ${this.className()}
     `
   }

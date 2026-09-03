@@ -9,6 +9,6 @@ import { Component } from '@angular/core';
 export class Topstrip {
 
   styles(): string {
-    return `w-full h-15 bg-blue-900 fixed top-0 left-0`
+    return `w-full h-15 fixed top-0 left-0`
   }
 }
