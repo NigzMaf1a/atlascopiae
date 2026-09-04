@@ -38,7 +38,7 @@ export class Storeworthdaily {
     return this.http.get<StoreWorthDailyResponse[]>(URL.storeLink(endpoints.storeWorthDaily.getByStoreAndDate(store_id, date)))
   }
 
-  patchStoreWorth(id: number, stwrp: UpdateStoreWorthDailyRequest) {
+  patchStoreWorthDaily(id: number, stwrp: UpdateStoreWorthDailyRequest) {
     return this.http.patch(URL.storeLink(endpoints.storeWorthDaily.patchWorth(id)), stwrp)
   }
 }
