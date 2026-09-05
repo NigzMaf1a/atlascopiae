@@ -1,14 +1,17 @@
-import { Component, inject, OnInit, OnDestroy, computed } from '@angular/core'
+import { Component, inject, OnInit } from '@angular/core'
 
-//service
+// service
 import { Manager } from '../../../../service/users/manager'
 
-//scripts
+// scripts
 import Refresh from '../../../../scripts/utils/refresh'
+
+//components
+import { Page } from '../../../../components/page/page'
 
 @Component({
   selector: 'app-manager-dashboard',
-  imports: [],
+  imports: [Page],
   templateUrl: './manager-dashboard.html',
   styleUrl: './manager-dashboard.css',
 })
@@ -17,5 +20,9 @@ export class ManagerDashboard implements OnInit {
 
   ngOnInit(): void {
     this.manager.initData()
+
+    Refresh.countdownToRefresh(() => {
+      this.manager.initData()
+    })
   }
 }
