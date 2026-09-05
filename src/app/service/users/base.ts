@@ -1,10 +1,7 @@
-import { Injectable, signal } from '@angular/core'
+import { signal } from '@angular/core'
 
 import Network from '../../scripts/utils/network'
 
-@Injectable({
-  providedIn: 'root',
-})
 export default class Base {
   connected = signal(Network.isConnected())
   no_connection = signal<string>(Network.notConnectedMessage())
