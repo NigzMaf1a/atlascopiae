@@ -24,7 +24,7 @@ export class Designations {
   }
 
   readDesignations() {
-    return this.http.get(URL.storeLink(endpoints.designations.get))
+    return this.http.get<DesignationResponse[]>(URL.storeLink(endpoints.designations.get))
   }
 
   updateDesignation(id: number, des: UpdateDesignationRequest) {
