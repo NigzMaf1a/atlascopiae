@@ -19,15 +19,15 @@ export class Informer {
   styles(): Styles {
     const dim = 'w-full h-full'
     const flex = 'flex justify-center items-center'
-    const margin = ''
+    const margin = 'mx-2 my-2 px-2 py-2'
     const hold = 'bg-white w-full h-10 flex flex-row justify-center items-center'
-    const text_color = this.color ? this.color : 'text-dark'
+    const text_color = this.color() || 'text-dark'
     const text_def = 'text-sm leading-tight tracking-tight'
 
     return {
       cont: `${dim} ${flex} ${margin}`,
-      holder: `${hold}`,
-      text: `${text_color} ${text_def}`
+      holder: hold,
+      text: `${text_color} ${text_def}`,
     }
   }
 }

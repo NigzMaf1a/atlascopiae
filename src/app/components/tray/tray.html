@@ -1,6 +1,9 @@
 <div [class]="styles().cont">
     @if (data().length > 0) {
-    <ng-content />
+    <div class="flex flex-row">
+        <div [class]="styles().label">{{data_label()}}</div>
+        <ng-content />
+    </div>
     } @else {
     <p [class]="styles().text">
         {{ no_data_message() }}

@@ -1,3 +1,13 @@
 <app-page>
-    <p>manager-dashboard works!</p>
+    @if (manager.loading()) {
+    <app-informer [text]="" />
+    } @else if(manager.error()){
+    <app-informer [text]="manager.error()!" />
+    } @else{
+    @if(manager.stores()){
+    <app-tray [data-]="manager.stores()" data_label="Stores" no_data_message="No stores found">
+        @for(store of manager.stores(); track manager.stores().storeId){}
+    </app-tray>
+    }
+    }
 </app-page>

@@ -3,6 +3,7 @@ import { Component, signal, inject, input, computed } from '@angular/core'
 interface Styles {
   cont: string
   text: string
+  label: string
 }
 
 @Component({
@@ -13,6 +14,7 @@ interface Styles {
 })
 export class Tray {
   data = input.required<unknown[]>()
+  data_label = input.required<string>()
   no_data_message = input.required<string>()
 
   styles = computed<Styles>(() => {
@@ -27,7 +29,8 @@ export class Tray {
 
     return {
       cont: `flex ${flex} ${borders} ${dim}`,
-      text: `${text_color} ${text_styles}`
+      text: `${text_color} ${text_styles}`,
+      label: `${text_styles}`
     }
   })
 }
