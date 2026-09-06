@@ -1,0 +1,9 @@
+<div [class]="styles().cont">
+    <div class="w-[75%] h-full flex flex-col gap-1">
+        <p [class]="styles().ref">{{store().storeRef}}</p>
+        <p [class]="styles().location">{{store().storeRef}}</p>
+    </div>
+    <div class="flex justify-center items-center">
+        <button [class]="styles().status">{{store().storeStatus}}</button>
+    </div>
+</div>

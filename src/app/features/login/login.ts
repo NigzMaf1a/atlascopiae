@@ -1,10 +1,11 @@
-import { Component, inject } from '@angular/core'
+import { Component, inject, signal } from '@angular/core'
 import {
   FormControl,
   FormGroup,
   ReactiveFormsModule,
   Validators
 } from '@angular/forms'
+import { forkJoin } from 'rxjs'
 
 import { ToastrService } from 'ngx-toastr'
 
@@ -15,8 +16,14 @@ import { Button } from '../../components/button/button'
 import { Text } from '../../components/text/text'
 import { Topstrip } from '../../components/topstrip/topstrip'
 
-import { AuthService } from '../../service/features/auth/auth.service'
-import Session from '../../scripts/auth/session'
+import { AuthService } from '../../service/features/auth/auth'
+import Session from '../../scripts/utils/user_in_session'
+import { Department } from '../../service/features/department/department'
+import Redirect from '../../scripts/utils/redirect'
+
+//types
+import Role from '../../interfaces/roles'
+import Sector from '../../interfaces/sectors'
 
 @Component({
   selector: 'app-login',
@@ -36,6 +43,10 @@ export class Login {
 
   private authService = inject(AuthService)
   private toastr = inject(ToastrService)
+  private dep = inject(Department)
+
+  roles = signal<Role[]>([])
+  sectors = signal<Sector[]>([])
 
   form = new FormGroup({
     email: new FormControl('', {
@@ -68,19 +79,35 @@ export class Login {
 
     const credentials = this.form.getRawValue()
 
+    forkJoin({
+      r: this.dep.readRoles(),
+      s: this.dep.readSectors()
+    }).subscribe({
+      next: (data) => {
+        this.roles.set(data.r)
+        this.sectors.set(data.s)
+      },
+
+      error: (error) => {
+        this.toastr.error(error)
+        return
+      }
+    })
+
     this.authService.login(credentials).subscribe({
       next: (response) => {
         console.log('Login successful:', response)
 
         this.submitting = false
 
-        Session.storeToken(response.token)
-        Session.storeUser(response.user)
+        Session.init(response.user, response.token, this.sectors(), this.roles())
 
         this.toastr.success(
           'You have been logged in successfully.',
           'Login successful'
         )
+
+        Redirect.redirectToDashboard(String(response.user.reg_type))
       },
 
       error: (error) => {

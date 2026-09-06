@@ -7,6 +7,18 @@ const reg_endpoints = {
         patch: (id: number) => `/api/reg/patch/${id}`
     },
 
+    sector: {
+        post: '/api/sect/post',
+        get: '/api/sect/get',
+        patch: (id: number) => `/api/sect/patch/${id}`
+    },
+
+    role: {
+        post: '/api/roles/post',
+        get: '/api/roles/get',
+        patch: (id: number) => `/api/roles/patch/${id}`
+    },
+
     task: {
         post: '/api/task/post',
         get: '/api/task/get',

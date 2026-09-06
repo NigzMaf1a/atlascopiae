@@ -1,13 +1,33 @@
 <app-page>
+
     @if (manager.loading()) {
-    <app-informer [text]="" />
-    } @else if(manager.error()){
+
+    <app-informer text="Loading..." />
+
+    } @else if (manager.error()) {
+
     <app-informer [text]="manager.error()!" />
-    } @else{
-    @if(manager.stores()){
-    <app-tray [data-]="manager.stores()" data_label="Stores" no_data_message="No stores found">
-        @for(store of manager.stores(); track manager.stores().storeId){}
+
+    } @else {
+
+    @if (detail()) {
+
+    <app-content>
+        <p>It goes here</p>
+    </app-content>
+
+    } @else {
+
+    <app-tray [data]="manager.stores()" data_label="Stores" no_data_message="No stores found">
+
+        @for (store of manager.stores(); track store.storeId) {
+        <app-storeelem [store]="store" />
+        }
+
     </app-tray>
+
     }
+
     }
+
 </app-page>
