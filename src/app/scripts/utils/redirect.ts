@@ -1,5 +1,8 @@
-import { inject } from '@angular/core'
+import { Injectable, inject } from '@angular/core'
 import { Router } from '@angular/router'
+
+// scripts
+import Session from './user_in_session'
 
 enum Regtypes {
     Manager = 'manager',
@@ -7,20 +10,30 @@ enum Regtypes {
     Assistant = 'assistant'
 }
 
+@Injectable({
+    providedIn: 'root'
+})
 export default class Redirect {
-    static router = inject(Router)
+    private router = inject(Router)
 
-    static redirectToDashboard(reg_type: string) {
-        if (reg_type.toLowerCase() === Regtypes.Manager.toLowerCase()) {
-            this.router.navigate(['/'])
-        }
+    redirectToDashboard(reg_type: string) {
+        switch (reg_type.toLowerCase()) {
+            case Regtypes.Manager:
+                this.router.navigate(['/manager/dashboard'])
+                break
 
-        if (reg_type.toLowerCase() === Regtypes.Assistant.toLowerCase()) {
-            this.router.navigate(['/'])
-        }
+            case Regtypes.Assistant:
+                this.router.navigate(['/assistant/dashboard'])
+                break
 
-        if (reg_type.toLowerCase() === Regtypes.Storeman.toLowerCase()) {
-            this.router.navigate(['/'])
+            case Regtypes.Storeman:
+                this.router.navigate(['/storeman/dashboard'])
+                break
         }
+    }
+
+    redirectToLogin() {
+        Session.nukeSession()
+        this.router.navigate(['/login'])
     }
 }

@@ -5,6 +5,7 @@ import { authGuard } from './scripts/auth/authGuard'
 import { Login } from './features/login/login'
 import { Landingpage } from './features/landingpage/landingpage'
 import { Storeditems } from './features/storeditems/storeditems'
+import { ManagerDashboard } from './features/users/manager/manager-dashboard/manager-dashboard'
 
 export const routes: Routes = [
     {
@@ -23,5 +24,9 @@ export const routes: Routes = [
     {
         path: 'storeditems',
         component: Storeditems
+    },
+    {
+        path: 'manager/dashboard',
+        component: ManagerDashboard
     }
 ]

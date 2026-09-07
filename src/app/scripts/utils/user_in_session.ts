@@ -41,4 +41,8 @@ export default class Session {
     static getRole(): string {
         return JSON.parse(localStorage.getItem('role') as string)
     }
+
+    static nukeSession() {
+        localStorage.clear()
+    }
 }
