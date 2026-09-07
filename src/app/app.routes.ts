@@ -26,7 +26,12 @@ export const routes: Routes = [
         component: Storeditems
     },
     {
-        path: 'manager/dashboard',
-        component: ManagerDashboard
+        path: 'manager',
+        children: [
+            {
+                path: 'dashboard',
+                component: ManagerDashboard
+            }
+        ]
     }
 ]
