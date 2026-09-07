@@ -17,7 +17,16 @@
     </app-content>
 
     } @else {
-
+    <div class="w-full h-10 flex justify-end mr-2 mb-2">
+        <button
+            class="w-30 h-full flex justify-center items-center text-white bg-blue-500 rounded-lg hover:cursor-pointer"
+            (click)="toggleAdd()">
+            {{ add() ? 'Close' : 'Add'}}
+        </button>
+    </div>
+    @if(add()){
+    <app-add-store [method]="addStore" />
+    } @else{
     <app-tray [data]="manager.stores()" data_label="Stores" no_data_message="No stores found">
 
         @for (store of manager.stores(); track store.storeId) {
@@ -25,6 +34,7 @@
         }
 
     </app-tray>
+    }
 
     }
 

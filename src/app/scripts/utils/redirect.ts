@@ -19,7 +19,7 @@ export default class Redirect {
     redirectToDashboard(reg_type: string) {
         switch (reg_type.toLowerCase()) {
             case Regtypes.Manager:
-                this.router.navigate(['/manager/dashboard'])
+                this.router.navigate(['/manager/stores'])
                 break
 
             case Regtypes.Assistant:

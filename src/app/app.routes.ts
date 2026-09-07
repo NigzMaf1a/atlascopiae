@@ -29,7 +29,7 @@ export const routes: Routes = [
         path: 'manager',
         children: [
             {
-                path: 'dashboard',
+                path: 'stores',
                 component: ManagerDashboard
             }
         ]
