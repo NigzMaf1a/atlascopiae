@@ -6,6 +6,7 @@ import { Login } from './features/login/login'
 import { Landingpage } from './features/landingpage/landingpage'
 import { Storeditems } from './features/storeditems/storeditems'
 import { ManagerDashboard } from './features/users/manager/manager-dashboard/manager-dashboard'
+import { DesignationsPage } from './features/users/manager/designations-page/designations-page'
 
 export const routes: Routes = [
     {
@@ -31,6 +32,10 @@ export const routes: Routes = [
             {
                 path: 'stores',
                 component: ManagerDashboard
+            },
+            {
+                path: 'designations',
+                component: DesignationsPage
             }
         ]
     }
