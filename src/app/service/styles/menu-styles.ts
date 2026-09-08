@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core'
 
+import BreakPoints, { breakpoints } from './breakpoints'
+
 interface Body {
   menu: string
   menuitem: string
