@@ -1,7 +1,7 @@
 <div [class]="styles().body">
 
     <div [class]="styles().left">
-        <div [class]="styleTogBtn().cont">
+        <div [class]="styleTogBtn().cont" (mouseenter)="toggleHover()" (mouseleave)="toggleHover()">
             <span [class]="styleTogBtn().elem"></span>
             <span [class]="styleTogBtn().elem"></span>
             <span [class]="styleTogBtn().elem"></span>

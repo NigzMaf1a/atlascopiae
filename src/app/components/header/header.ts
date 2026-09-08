@@ -1,4 +1,4 @@
-import { Component } from '@angular/core'
+import { Component, input, signal, effect } from '@angular/core'
 
 //styles
 interface Styles {
@@ -12,6 +12,8 @@ interface TogBtn {
   elem: string
 }
 
+type Trigger = (val: boolean) => void
+
 @Component({
   selector: 'app-header',
   imports: [],
@@ -19,6 +21,34 @@ interface TogBtn {
   styleUrl: './header.css',
 })
 export class Header {
+  hovered = signal<boolean>(false)
+  menu_hovered = input.required<boolean>()
+  menuTrigger = input.required<Trigger>()
+
+  constructor() {
+    effect(() => {
+      if (this.hovered()) {
+        console.log('I was hovered')
+        this.menuTrigger()
+      }
+    })
+  }
+
+  toggleHover() {
+    this.hovered.set(true)
+  }
+
+  unToggleHover() {
+
+    if (this.menu_hovered()) return
+
+    const timeout = setTimeout(() => {
+      this.hovered.set(false)
+      console.log('Its working : Untoggle')
+    }, 3000)
+
+    clearTimeout(timeout)
+  }
 
   styles(): Styles {
     const dim = 'w-full h-20'
