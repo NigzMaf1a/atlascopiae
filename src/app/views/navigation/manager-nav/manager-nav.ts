@@ -1,5 +1,8 @@
-import { Component, inject } from '@angular/core'
+import { Component, inject, output, signal } from '@angular/core'
 import { Router } from '@angular/router'
+
+//styles
+import Features from '../../../scripts/utils/theme/features'
 
 type Pages = 'designations' | 'stores'
 
@@ -15,7 +18,14 @@ const managerRoutes: Record<Pages, string> = {
   styleUrl: './manager-nav.css',
 })
 export class ManagerNav {
+  menu_styles = Features.menuStyles()
   router = inject(Router)
+
+  hovered = signal<boolean>(false)
+
+  toggleHover() {
+    this.hovered.update(prev => !prev)
+  }
 
   navDesignations() {
     this.router.navigate([managerRoutes.designations])
