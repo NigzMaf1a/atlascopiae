@@ -3,12 +3,17 @@ import SessionVariables from "../../interfaces/session"
 import Role from "../../interfaces/roles"
 import Sector from "../../interfaces/sectors"
 import User from "../../interfaces/user"
-
-type Keys = 'user' | 'token' | 'sector' | 'role'
+import Theme, { Themes } from "./theme/theme"
 
 export default class Session {
     static init(user: User, token: string, sectors: Sector[], roles: Role[]): boolean {
         try {
+            const theme = new Theme()
+
+            if (Session.getTheme() !== null) {
+                theme.setTheme(Session.getTheme())
+            } else theme.setTheme('dark')
+
             const user_string = JSON.stringify(user)
             const token_string = JSON.stringify(token)
             const sector_string = JSON.stringify(sectors.find(s => Number(s.sector_id) === Number(user.sector_id))?.sector_name as string)
@@ -40,6 +45,10 @@ export default class Session {
 
     static getRole(): string {
         return JSON.parse(localStorage.getItem('role') as string)
+    }
+
+    static getTheme(): Themes {
+        return new Theme().theme
     }
 
     static nukeSession() {

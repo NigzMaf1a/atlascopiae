@@ -11,13 +11,24 @@ interface Body {
   providedIn: 'root',
 })
 export class MenuStyles {
-  bodyStyles(): Body {
-    const menu_dim = 'h-[400px] w-[250px]'
 
+  menuStyles(): string {
+    const p = BreakPoints.getBreakPoint()
+
+    const big = 'w-[250px] h-full'
+    const small = 'h-full w-full'
+
+    const dim = breakpoints[p] >= breakpoints['md'] ? big : small
+    const aes = ''
+
+    return `${dim} ${aes}`
+  }
+
+  bodyStyles(): Body {
     const i_dim = ''
 
     return {
-      menu: `${menu_dim}`,
+      menu: `${this.menuStyles()}`,
       menuitem: `${i_dim}`
     }
   }
