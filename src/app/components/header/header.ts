@@ -12,7 +12,7 @@ interface TogBtn {
   elem: string
 }
 
-type Trigger = (val: boolean) => void
+type Trigger = () => void
 
 @Component({
   selector: 'app-header',

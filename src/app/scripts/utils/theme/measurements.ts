@@ -1,12 +1,21 @@
 import BreakPoints from "../../../service/styles/breakpoints"
 
 export default class Measurement {
+
+    static fullWidth(more: string): string {
+        return `w-full ${more}`
+    }
+
+    static fullHeight(more: string): string {
+        return `h-full ${more}`
+    }
+
     static page(): string {
         return ``
     }
 
     static btn(): string {
-        return ``
+        return `w-30 h-10 rounded-lg`
     }
 
     static input(): string {

@@ -20,7 +20,7 @@ export default class Colors {
     }
 
     static button(type: BtnType): string {
-        const pri_dark = 'bg-white border-teal-500 text-teal-500'
+        const pri_dark = 'bg-slate-500 border-teal-500 text-white'
         const pri_light = 'bg-teal-500 border-none text-white'
         const sec_pri = 'bg-teal-500 border-none text-white'
         const sec_dark = 'bg-teal-500 border-none text-white'

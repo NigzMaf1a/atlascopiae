@@ -1,0 +1,17 @@
+<div [class]="styles().body">
+    <div [class]="styles().left">
+        <div [class]="styles().row">
+            <p [class]="styles().label">Ref</p>
+            <p [class]="styles().text">{{designation().desRef}}</p>
+        </div>
+
+        <div [class]="styles().row">
+            <p [class]="styles().label">Desc</p>
+            <p [class]="styles().text">{{designation().desDesc}}</p>
+        </div>
+    </div>
+
+    <div [class]="styles().right">
+        <button [class]="styles().btn" (click)="onClick()">View</button>
+    </div>
+</div>

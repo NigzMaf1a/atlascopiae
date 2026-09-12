@@ -1,3 +1,27 @@
-<app-page>
-    <app-header />
+<app-page [className]="pageStyles()">
+    <!-- <app-header [menu_hovered]="menu_hovered()" [menuTrigger]="triggerMenu()" /> -->
+    @if(!add_designation()){
+    <div class="w-full h-full flex flex-col gap-3">
+        <div [class]="styles().tray">
+            @if(designations){
+            @for(des of designations; track des.desId){
+            <app-desig-item [designation]="des" [onClick]="toggleDetail" />
+            }
+            }
+        </div>
+
+        <div [class]="styles().add">
+            <button [class]="btnStyles()" (click)="toggleDesignationAdd()">Add</button>
+        </div>
+    </div>
+    } @else{
+    <div class="w-full h-full flex justify-center items-center">
+        <form class="w-100 h-100 mx-2 bg-white rounded-lg">
+            <div class="w-full mt-auto pt-2 px-2 flex flex-row justify-between">
+                <button [class]="btnStyles()" (click)="toggleDesignationAdd()">Close</button>
+                <button [class]="btnStyles()" (click)="addDesignation()">Submit</button>
+            </div>
+        </form>
+    </div>
+    }
 </app-page>
